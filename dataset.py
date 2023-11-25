@@ -24,6 +24,11 @@ class customized_dataset(Dataset):
         return self.df.shape[0]
     
     def __getitem__(self, index: int):
+        base_path = '/kaggle/input/fase-mask1/Masked_Face_Recognition-master/Code'
+        # Construct the full path
+        full_path = os.path.join(base_path, image_path[2:])
+        # Update the DataFrame with the new path
+        self.df.at[index, 'path'] = full_path
         # target label
         target = self.df.iloc[index]['target']
         image_path = self.df.iloc[index]['path']
@@ -33,6 +38,8 @@ class customized_dataset(Dataset):
             img = self.transforms_train(img)
             return {'image':img, 'target':target}
         else:
+            # Update the DataFrame with the new path
+            self.df.at[index, 'pair_path'] = full_path
             img = self.transforms_test(img)
             pair_path = self.df.iloc[index]['pair_path']
             pair_target = self.df.iloc[index]['pair_target']
