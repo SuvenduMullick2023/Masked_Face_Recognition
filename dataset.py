@@ -47,7 +47,10 @@ class customized_dataset(Dataset):
         #print("image_path", image_path)
 
         # original image
-        img = Image.open(image_path)
+        try :
+            img = Image.open(image_path)
+        except :
+            print("image path not present")
         if self.mode=='train' or self.mode=='valid':
             img = self.transforms_train(img)
             return {'image':img, 'target':target}
@@ -59,8 +62,10 @@ class customized_dataset(Dataset):
             if pair_path.startswith('/./'):
                 pair_path = pair_path[3:]
             pair_path = pair_path.replace('/train2/', '/train/')
-            pair_img = Image.open(pair_path)
-
+            try :
+                pair_img = Image.open(pair_path)
+            except :
+                print("pair path not present")
             
             pair_target = self.df.iloc[index]['pair_target']
             pair_img = self.transforms_test(pair_img)
