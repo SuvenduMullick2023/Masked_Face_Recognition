@@ -24,27 +24,30 @@ class customized_dataset(Dataset):
         return self.df.shape[0]
     
     def __getitem__(self, index: int):
-        base_path = '/kaggle/working/'
-        # Construct the full path
-        full_path = os.path.join(base_path, image_path[2:])
-        # Update the DataFrame with the new path
-        self.df.at[index, 'path'] = full_path
         # target label
         target = self.df.iloc[index]['target']
-        image_path = self.df.iloc[index]['path']
-        image_path = os.path.normpath(image_path)
+        #image_path = self.df.iloc[index]['path']
+
+        current_folder = '/kaggle/working'
+        relative_path = self.df.iloc[index]['path']
+        #code_folder = 'Code'
+
+        # Construct the full path
+        image_path = os.path.join(current_folder, relative_path)
+        #print("image_path", image_path)
+
         # original image
         img = Image.open(image_path)
         if self.mode=='train' or self.mode=='valid':
             img = self.transforms_train(img)
             return {'image':img, 'target':target}
         else:
-            # Update the DataFrame with the new path
-            self.df.at[index, 'pair_path'] = full_path
             img = self.transforms_test(img)
             pair_path = self.df.iloc[index]['pair_path']
-            pair_target = self.df.iloc[index]['pair_target']
-            pair_path = os.path.normpath(pair_path)
+            pair_path = os.path.join(current_folder, pair_path)
             pair_img = Image.open(pair_path)
+
+            
+            pair_target = self.df.iloc[index]['pair_target']
             pair_img = self.transforms_test(pair_img)
             return {'image':img, 'target':target, 'pair_image':pair_img, 'pair_target':pair_target}
