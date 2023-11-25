@@ -32,9 +32,13 @@ class customized_dataset(Dataset):
         current_folder = '/kaggle/working'
         relative_path = self.df.iloc[index]['path']
         #code_folder = 'Code'
+        
 
         # Construct the full path
         image_path = os.path.join(current_folder, relative_path)
+        image_path = os.path.normpath(image_path)
+        if image_path.startswith('/./'):
+            image_path = image_path[3:]
         #print("image_path", image_path)
 
         # original image
@@ -46,6 +50,9 @@ class customized_dataset(Dataset):
             img = self.transforms_test(img)
             pair_path = self.df.iloc[index]['pair_path']
             pair_path = os.path.join(current_folder, pair_path)
+            pair_path = os.path.normpath(pair_path)
+            if pair_path.startswith('/./'):
+                pair_path = pair_path[3:]
             pair_img = Image.open(pair_path)
 
             
