@@ -32,6 +32,7 @@ class customized_dataset(Dataset):
         # target label
         target = self.df.iloc[index]['target']
         image_path = self.df.iloc[index]['path']
+        image_path = os.path.normpath(image_path)
         # original image
         img = Image.open(image_path)
         if self.mode=='train' or self.mode=='valid':
@@ -43,6 +44,7 @@ class customized_dataset(Dataset):
             img = self.transforms_test(img)
             pair_path = self.df.iloc[index]['pair_path']
             pair_target = self.df.iloc[index]['pair_target']
+            pair_path = os.path.normpath(pair_path)
             pair_img = Image.open(pair_path)
             pair_img = self.transforms_test(pair_img)
             return {'image':img, 'target':target, 'pair_image':pair_img, 'pair_target':pair_target}
