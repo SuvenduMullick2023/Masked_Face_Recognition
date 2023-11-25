@@ -45,7 +45,7 @@ class customized_dataset(Dataset):
         #parts[3] = 'train'
         #image_path = os.path.join(*parts)
         #print("image_path", image_path)
-
+        img = ""
         # original image
         try :
             img = Image.open(image_path)
