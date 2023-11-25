@@ -38,6 +38,8 @@ class customized_dataset(Dataset):
         #image_path = os.path.join(current_folder, relative_path)
         image_path = os.path.join(current_folder, relative_path.lstrip('./'))
         image_path = os.path.normpath(image_path)
+        if image_path.startswith('/./'):
+                image_path = image_path[3:]
         #print("image_path", image_path)
 
         # original image
@@ -51,6 +53,8 @@ class customized_dataset(Dataset):
             #pair_path = os.path.join(current_folder, pair_path)
             pair_path = os.path.join(current_folder, pair_path.lstrip('./'))
             pair_path = os.path.normpath(pair_path)
+            if pair_path.startswith('/./'):
+                pair_path = pair_path[3:]
             pair_img = Image.open(pair_path)
 
             
