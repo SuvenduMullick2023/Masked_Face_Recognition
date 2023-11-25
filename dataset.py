@@ -24,7 +24,7 @@ class customized_dataset(Dataset):
         return self.df.shape[0]
     
     def __getitem__(self, index: int):
-        base_path = '/kaggle/input/fase-mask1/Masked_Face_Recognition-master/Code'
+        base_path = '/kaggle/working/'
         # Construct the full path
         full_path = os.path.join(base_path, image_path[2:])
         # Update the DataFrame with the new path
