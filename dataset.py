@@ -46,6 +46,7 @@ class customized_dataset(Dataset):
         #image_path = os.path.join(*parts)
         #print("image_path", image_path)
         img = ""
+        pair_img = ""
         # original image
         try :
             img = Image.open(image_path)
