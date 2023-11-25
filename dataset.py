@@ -39,7 +39,7 @@ class customized_dataset(Dataset):
         image_path = os.path.normpath(image_path)
         if image_path.startswith('/./'):
             image_path = image_path[3:]
-        pair_path = pair_path.replace('/train2/', '/train/')    
+        image_path = image_path.replace('/train2/', '/train/')    
         #parts = image_path.split(os.path.sep)
         # Replace 'train2' with 'train1'
         #parts[3] = 'train'
