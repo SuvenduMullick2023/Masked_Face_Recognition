@@ -46,10 +46,10 @@ if __name__ == "__main__":
     print("Device:",device)
     
     # read scv
-    df_train = pd.read_csv('train.csv')
-    df_eval1 = pd.read_csv('eval_same.csv')
-    df_eval2 = pd.read_csv('eval_diff.csv')
-    df_test = pd.read_csv('test.csv')
+    df_train = pd.read_csv('/kaggle/input/fase-mask1/Masked_Face_Recognition-master/Code/data/train.csv')
+    df_eval1 = pd.read_csv('/kaggle/input/fase-mask1/Masked_Face_Recognition-master/Code/data/eval_same.csv')
+    df_eval2 = pd.read_csv('/kaggle/input/fase-mask1/Masked_Face_Recognition-master/Code/data/eval_diff.csv')
+    df_test = pd.read_csv('/kaggle/input/fase-mask1/Masked_Face_Recognition-master/Code/data/test.csv')
 
     # label_to_samples
     print('Initializing sampler...')
