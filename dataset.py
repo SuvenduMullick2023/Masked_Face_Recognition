@@ -39,6 +39,7 @@ class customized_dataset(Dataset):
         image_path = os.path.normpath(image_path)
         if image_path.startswith('/./'):
             image_path = image_path[3:]
+            image_path = image_path.replace('/train2/', '/train/')
         #print("image_path", image_path)
 
         # original image
@@ -53,6 +54,7 @@ class customized_dataset(Dataset):
             pair_path = os.path.normpath(pair_path)
             if pair_path.startswith('/./'):
                 pair_path = pair_path[3:]
+                pair_path = pair_path.replace('/train2/', '/train/')
             pair_img = Image.open(pair_path)
 
             
