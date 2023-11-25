@@ -48,7 +48,9 @@ class customized_dataset(Dataset):
         else:
             img = self.transforms_test(img)
             pair_path = self.df.iloc[index]['pair_path']
-            pair_path = os.path.join(current_folder, pair_path)
+            #pair_path = os.path.join(current_folder, pair_path)
+            pair_path = os.path.join(current_folder, pair_path.lstrip('./'))
+            pair_path = os.path.normpath(pair_path)
             pair_img = Image.open(pair_path)
 
             
