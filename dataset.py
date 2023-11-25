@@ -35,7 +35,9 @@ class customized_dataset(Dataset):
         #code_folder = 'Code'
 
         # Construct the full path
-        image_path = os.path.join(current_folder, relative_path)
+        #image_path = os.path.join(current_folder, relative_path)
+        image_path = os.path.join(current_folder, relative_path.lstrip('./'))
+        image_path = os.path.normpath(image_path)
         #print("image_path", image_path)
 
         # original image
