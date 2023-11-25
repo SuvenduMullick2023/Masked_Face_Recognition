@@ -2,6 +2,7 @@ from torch.utils.data import Dataset
 from torchvision import transforms
 from PIL import Image
 import pandas as pd
+import os
 
 class customized_dataset(Dataset):
     def __init__(self, dataframe: pd.DataFrame, mode: str, label_to_samples=None):
