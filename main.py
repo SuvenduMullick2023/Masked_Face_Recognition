@@ -33,7 +33,7 @@ if __name__ == "__main__":
     # sgd or None(adam) or rmsprop
     optimizer_type = 'adadelta'
     num_epochs = 100
-    eval_every = 50
+    eval_every = 25
     # margin for triplet loss
     margin=3
     # name to open or save the model
